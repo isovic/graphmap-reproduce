@@ -1,0 +1,9 @@
+!*.*
+!*.py
+*.pyc
+*.tee
+temp*.txt
+temp/
+data/
+tools/
+src/*.pyc
