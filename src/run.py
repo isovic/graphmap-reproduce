@@ -52,10 +52,63 @@ def setup_tools():
 
 
 def setup_data():
+	sys.stderr.write('Generating simulated data.\n');
 	execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
 
+	sys.stderr.write('Creating downloads folder in path: "%s/../data/downloads".\n' % (SCRIPT_PATH));
 	os.makedirs('%s/../data/downloads' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; wget' % (SCRIPT_PATH));
+
+	sys.stderr.write('Downloading raw nanopore data.\n');
+	
+	sys.stderr.write('\tFetching the R7 dataset.\n');
+	execute_command('cd %s/../data/downloads/; mkdir R7' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA362/ERA362836/oxfordnanopore_native/Ecoli_R7_NONI.tgz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA362/ERA362836/oxfordnanopore_native/Ecoli_R7_ONI_flowcell_18.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA362/ERA362836/oxfordnanopore_native/Ecoli_R7_ONI_flowcell_17.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the R7.3 data.\n');
+	execute_command('cd %s/../data/downloads/; mkdir R7.3' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7.3; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA362/ERA362836/oxfordnanopore_native/Ecoli_R73.tgz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the E. Coli UTI89 dataset, generated in-house.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir ecoli-uti89' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-uti89; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA444/ERA444730/oxfordnanopore_native/reads.tar' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the Salmonella Typhi dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir salmonella-typhi' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA375/ERA375685/oxfordnanopore_native/H566_ON_inc.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA375/ERA375987/oxfordnanopore_native/H566_30_min_inc.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA376/ERA376255/oxfordnanopore_native/raw_2_rabsch_R7.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the amplicon sequencing dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir amplicons' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR174/004/SRR1747434/SRR1747434.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR174/000/SRR1748410/SRR1748410.fastq.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the BE1 dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir be1' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd be1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA463/ERA463589/oxfordnanopore_native/FAA37759_GB2974_MAP005_20150423__2D_basecalling_v1.14_2D.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the ADP1 dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir adp1' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA416/ERA416080/fastq/AWK_ONT_MN2064525.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA416/ERA416080/fastq/AWK_ONT_MN2064006.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA416/ERA416080/fastq/AWK_ONT_FAA43210.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA416/ERA416080/fastq/AWK_ONT_FAA43204.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA416/ERA416080/fastq/AWK_ONT_FAA17573.fastq.gz' % (SCRIPT_PATH));
+	
+	sys.stderr.write('\tFetching the Loman et al. dataset used for nanopore-only assembly.\n');
+	execute_command('cd %s/../data/downloads/; mkdir ecoli-nmeth' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA411/ERA411499/oxfordnanopore_native/flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA411/ERA411499/oxfordnanopore_native/flowcell_32_LomanLabz_K12_His_tag.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA411/ERA411499/oxfordnanopore_native/flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; wget ftp://ftp.sra.ebi.ac.uk/vol1/ERA411/ERA411499/oxfordnanopore_native/flowcell_39.tar' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tFetching the MAP006-1 dataset.\n');
+	execute_command('cd %s/../data/downloads/; mkdir ecoli-map006' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-map006; wget http://nanopore.climb-radosgw01.bham.ac.uk/MAP006-1.basecalled.tar' % (SCRIPT_PATH));
+
+
 
 def run_simulated_data():
 	pass;
