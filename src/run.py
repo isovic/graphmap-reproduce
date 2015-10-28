@@ -19,9 +19,16 @@ try:
 	import vcffilter;
 	import fastqparser;
 	import utility_sam;
+	MODULE_VCFFILTER = True;
+	MODULE FASTQPARSER = True;
+	MODULE UTILITYSAM = True;
 except:
-	sys.stderr.write('Please run "%s setup" first! Exiting.\n\n' % (sys.argv[0]));
-	exit(1);
+	MODULE_VCFFILTER = False;
+	MODULE FASTQPARSER = False;
+	MODULE UTILITYSAM = False;
+
+	# sys.stderr.write('Please run "%s setup" first! Exiting.\n\n' % (sys.argv[0]));
+	# exit(1);
 
 BAMSURGEON_PATH = '%s/../tools/bamsurgeon' % (SCRIPT_PATH);
 
@@ -1882,8 +1889,14 @@ if __name__ == "__main__":
 	elif (sys.argv[1] == 'setup-data'):
 		setup_data();
 	elif (sys.argv[1] == 'run-simdata'):
+		if (MODULE_VCFFILTER == False or MODULE FASTQPARSER == False or MODULE UTILITYSAM == False)
+			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));
+			exit(1);
 		run_simulated_data();
 	elif (sys.argv[1] == 'run-realdata'):
+		if (MODULE_VCFFILTER == False or MODULE FASTQPARSER == False or MODULE UTILITYSAM == False)
+			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));
+			exit(1);
 		run_real_data();
 	else:
 		verbose_usage_and_exit();
