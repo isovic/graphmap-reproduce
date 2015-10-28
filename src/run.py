@@ -59,6 +59,49 @@ def setup_tools():
 
 
 def setup_data():
+	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
+
+	sys.stderr.write('\tExtracting the R7 dataset.\n');
+	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_NONI.tgz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_ONI_flowcell_18.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_ONI_flowcell_17.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the R7.3 data.\n');
+	execute_command('cd %s/../data/downloads/; cd R7.3; tar -xzvf Ecoli_R73.tgz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the E. Coli UTI89 dataset, generated in-house.\n');	
+	execute_command('cd %s/../data/downloads/; cd ecoli-uti89; tar -xzvf reads.tar' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the Salmonella Typhi dataset.\n');	
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf H566_ON_inc.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf H566_30_min_inc.tar.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf raw_2_rabsch_R7.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the amplicon sequencing dataset.\n');	
+	execute_command('cd %s/../data/downloads/; cd amplicons; tar -xzvf SRR1747434.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; tar -xzvf SRR1748410.fastq.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the BE1 dataset.\n');	
+	execute_command('cd %s/../data/downloads/; cd be1; tar -xzvf FAA37759_GB2974_MAP005_20150423__2D_basecalling_v1.14_2D.tar.gz' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the ADP1 dataset.\n');	
+	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_MN2064525.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_MN2064006.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA43210.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA43204.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA17573.fastq.gz' % (SCRIPT_PATH));
+	
+	sys.stderr.write('\tExtracting the Loman et al. dataset used for nanopore-only assembly.\n');
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_32_LomanLabz_K12_His_tag.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag.tar' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_39.tar' % (SCRIPT_PATH));
+
+	sys.stderr.write('\tExtracting the MAP006-1 dataset.\n');
+	execute_command('cd %s/../data/downloads/; cd ecoli-map006; tar -xzvf MAP006-1.basecalled.tar' % (SCRIPT_PATH));
+
+	return;
+
 	sys.stderr.write('Generating simulated data.\n');
 	execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
 
