@@ -83,8 +83,8 @@ def setup_data():
 
 	sys.stderr.write('\tExtracting the amplicon sequencing dataset.\n');	
 	folder_name = 'amplicons';
-	archive_basename = 'SRR1747434';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'SRR1748410';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'SRR1747434';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'SRR1748410';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
 
 	sys.stderr.write('\tExtracting the BE1 dataset.\n');	
 	folder_name = 'be1';
@@ -92,11 +92,11 @@ def setup_data():
 
 	sys.stderr.write('\tExtracting the ADP1 dataset.\n');	
 	folder_name = 'adp1';
-	archive_basename = 'AWK_ONT_MN2064525';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'AWK_ONT_MN2064006';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'AWK_ONT_FAA43210';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'AWK_ONT_FAA43204';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'AWK_ONT_FAA17573';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_MN2064525';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_MN2064006';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA43210';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA43204';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA17573';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
 	
 	sys.stderr.write('\tExtracting the Loman et al. dataset used for nanopore-only assembly.\n');
 	folder_name = 'ecoli-nmeth';
