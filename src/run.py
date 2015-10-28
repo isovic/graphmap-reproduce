@@ -63,7 +63,8 @@ def setup_data():
 	execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
 
 	sys.stderr.write('Creating downloads folder in path: "%s/../data/downloads".\n' % (SCRIPT_PATH));
-	os.makedirs('%s/../data/downloads' % (SCRIPT_PATH));
+	if (not os.path.exists('%s/../data/downloads' % (SCRIPT_PATH))):
+		os.makedirs('%s/../data/downloads' % (SCRIPT_PATH));
 
 	sys.stderr.write('Downloading raw nanopore data.\n');
 	
