@@ -62,48 +62,60 @@ def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
 
 	sys.stderr.write('\tExtracting the R7 dataset.\n');
-	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_NONI.tgz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_ONI_flowcell_18.tar.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd R7; tar -xzvf Ecoli_R7_ONI_flowcell_17.tar.gz' % (SCRIPT_PATH));
+	folder_name = 'R7';
+	archive_basename = 'Ecoli_R7_NONI';					execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tgz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_18';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_17';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the R7.3 data.\n');
-	execute_command('cd %s/../data/downloads/; cd R7.3; tar -xzvf Ecoli_R73.tgz' % (SCRIPT_PATH));
+	folder_name = 'R7.3';
+	archive_basename = 'Ecoli_R73';					execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tgz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the E. Coli UTI89 dataset, generated in-house.\n');	
-	execute_command('cd %s/../data/downloads/; cd ecoli-uti89; tar -xzvf reads.tar' % (SCRIPT_PATH));
+	folder_name = 'ecoli-uti89';
+	archive_basename = 'reads';					execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the Salmonella Typhi dataset.\n');	
-	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf H566_ON_inc.tar.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf H566_30_min_inc.tar.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd salmonella-typhi; tar -xzvf raw_2_rabsch_R7.tar.gz' % (SCRIPT_PATH));
+	folder_name = 'salmonella-typhi';
+	archive_basename = 'H566_ON_inc';			execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'H566_30_min_inc';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'raw_2_rabsch_R7';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the amplicon sequencing dataset.\n');	
-	execute_command('cd %s/../data/downloads/; cd amplicons; tar -xzvf SRR1747434.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd amplicons; tar -xzvf SRR1748410.fastq.gz' % (SCRIPT_PATH));
+	folder_name = 'amplicons';
+	archive_basename = 'SRR1747434';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'SRR1748410';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
 
 	sys.stderr.write('\tExtracting the BE1 dataset.\n');	
-	execute_command('cd %s/../data/downloads/; cd be1; tar -xzvf FAA37759_GB2974_MAP005_20150423__2D_basecalling_v1.14_2D.tar.gz' % (SCRIPT_PATH));
+	folder_name = 'be1';
+	archive_basename = 'FAA37759_GB2974_MAP005_20150423__2D_basecalling_v1.14_2D';			execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the ADP1 dataset.\n');	
-	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_MN2064525.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_MN2064006.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA43210.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA43204.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd adp1; tar -xzvf AWK_ONT_FAA17573.fastq.gz' % (SCRIPT_PATH));
+	folder_name = 'adp1';
+	archive_basename = 'AWK_ONT_MN2064525';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_MN2064006';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA43210';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA43204';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'AWK_ONT_FAA17573';			execute_command('cd %s/../data/downloads/; cd %s; gunzip %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
 	
 	sys.stderr.write('\tExtracting the Loman et al. dataset used for nanopore-only assembly.\n');
-	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3.tar' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_32_LomanLabz_K12_His_tag.tar' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag.tar' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd ecoli-nmeth; tar -xzvf flowcell_39.tar' % (SCRIPT_PATH));
+	folder_name = 'ecoli-nmeth';
+	archive_basename = 'flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3';			execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'flowcell_32_LomanLabz_K12_His_tag';					execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
+	archive_basename = 'flowcell_39';										execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	sys.stderr.write('\tExtracting the MAP006-1 dataset.\n');
-	execute_command('cd %s/../data/downloads/; cd ecoli-map006; tar -xzvf MAP006-1.basecalled.tar' % (SCRIPT_PATH));
+	folder_name = 'ecoli-map006';
+	archive_basename = 'MAP006-1.basecalled';			execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xvf %s.tar -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
 
 	return;
 
 	sys.stderr.write('Generating simulated data.\n');
-	execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
+	if (not os.path.exits('cd %s/../tools/aligneval/setup.py' % (SCRIPT_PATH))):
+		sys.stderr.write('ERROR: Could not setup simulated data - please run "%s setup-tools" first!\n' % (sys.argv[0]));
+	else:
+		execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
 
 	sys.stderr.write('Creating downloads folder in path: "%s/../data/downloads".\n' % (SCRIPT_PATH));
 	if (not os.path.exists('%s/../data/downloads' % (SCRIPT_PATH))):
