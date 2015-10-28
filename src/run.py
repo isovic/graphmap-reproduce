@@ -20,12 +20,12 @@ try:
 	import fastqparser;
 	import utility_sam;
 	MODULE_VCFFILTER = True;
-	MODULE FASTQPARSER = True;
+	MODULE_FASTQPARSER = True;
 	MODULE UTILITYSAM = True;
 except:
 	MODULE_VCFFILTER = False;
-	MODULE FASTQPARSER = False;
-	MODULE UTILITYSAM = False;
+	MODULE_FASTQPARSER = False;
+	MODULE_UTILITYSAM = False;
 
 	# sys.stderr.write('Please run "%s setup" first! Exiting.\n\n' % (sys.argv[0]));
 	# exit(1);
@@ -1889,12 +1889,12 @@ if __name__ == "__main__":
 	elif (sys.argv[1] == 'setup-data'):
 		setup_data();
 	elif (sys.argv[1] == 'run-simdata'):
-		if (MODULE_VCFFILTER == False or MODULE FASTQPARSER == False or MODULE UTILITYSAM == False)
+		if (MODULE_VCFFILTER == False or MODULE_FASTQPARSER == False or MODULE_UTILITYSAM == False)
 			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));
 			exit(1);
 		run_simulated_data();
 	elif (sys.argv[1] == 'run-realdata'):
-		if (MODULE_VCFFILTER == False or MODULE FASTQPARSER == False or MODULE UTILITYSAM == False)
+		if (MODULE_VCFFILTER == False or MODULE_FASTQPARSER == False or MODULE_UTILITYSAM == False)
 			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));
 			exit(1);
 		run_real_data();
