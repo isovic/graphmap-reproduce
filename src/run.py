@@ -21,7 +21,7 @@ try:
 	import utility_sam;
 	MODULE_VCFFILTER = True;
 	MODULE_FASTQPARSER = True;
-	MODULE UTILITYSAM = True;
+	MODULE_UTILITYSAM = True;
 except:
 	MODULE_VCFFILTER = False;
 	MODULE_FASTQPARSER = False;
