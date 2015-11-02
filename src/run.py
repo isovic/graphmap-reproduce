@@ -85,7 +85,8 @@ def setup_data():
 	fastq_file = 'reads-typhi.fastq';
 	reads_folder = '%s/../data/consensus-salmonellatyphi/reads/' % (SCRIPT_PATH);
 	archive_basename = 'H566_ON_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_ON_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; find . -name "*.fast5" -exec mv {} ./ \; poretools fastq %s/H566_30_min_inc/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; find . -name "*.fast5" -exec mv {} ./ \;' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_30_min_inc/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
