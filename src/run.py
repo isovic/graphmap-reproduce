@@ -85,8 +85,8 @@ def setup_data():
 	fastq_file = 'reads-typhi.fastq';
 	reads_folder = '%s/../data/consensus-salmonellatyphi/reads/' % (SCRIPT_PATH);
 	archive_basename = 'H566_ON_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_ON_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_30_min_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; find . -name "*.fast5" -exec mv {} ./ \; poretools fastq %s/H566_30_min_inc/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	folder_name = 'amplicons';
@@ -98,7 +98,7 @@ def setup_data():
 
 	# reads_folder = '%s/../data/amplicons-f1000/reads/' % (SCRIPT_PATH);
 	# execute_command('%s/fastqfilter.py %s/../data/downloads/%s/reads_all-f1000.fastq %s/../data/downloads/%s/reads_2d.fastq'  % (SAMSCRIPTS, SCRIPT_PATH, folder_name, SCRIPT_PATH, folder_name));
-	
+
 
 	folder_name = 'be1';
 	fastq_file = 'reads-BE1.fastq';
@@ -120,16 +120,16 @@ def setup_data():
 	fastq_file = 'reads-nmeth-all_2d.fastq';
 	reads_folder = '%s/../data/consensus-ecolinmeth/reads/' % (SCRIPT_PATH);
 	archive_basename = 'flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_20/1.9/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_32_LomanLabz_K12_His_tag'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_32/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_33/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_39'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_39_K12_Histag/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'flowcell_32_LomanLabz_K12_His_tag'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_32/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_33/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'flowcell_39'; execute_command('cd %s/../data/downloads/%s; poretools --type 2D fastq %s/flowcell_39_K12_Histag/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	folder_name = 'ecoli-map006';
 	fastq_file = 'reads-MAP006-1.fastq';
 	reads_folder = '%s/../data/consensus-ecoliMAP006/reads/' % (SCRIPT_PATH);
 	archive_basename = 'MAP006-1.basecalled'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/MAP006-1_downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'MAP006-1.basecalled'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/MAP006-1_downloads/fail/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'MAP006-1.basecalled'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/MAP006-1_downloads/fail/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	return;
