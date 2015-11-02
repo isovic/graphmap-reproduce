@@ -60,6 +60,10 @@ def setup_tools():
 
 def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
+	
+	execute_command('');
+
+	return;
 
 	sys.stderr.write('\tExtracting the R7 dataset.\n');
 	folder_name = 'R7';
