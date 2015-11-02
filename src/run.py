@@ -62,9 +62,9 @@ def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
 	
 	folder_name = 'R7';
-	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ > Ecoli_R7_CombinedFasta.fastq');
-	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq');
-	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq');
+	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > Ecoli_R7_CombinedFasta.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq'  % (SCRIPT_PATH, folder_name, archive_basename));
 
 	return;
 
