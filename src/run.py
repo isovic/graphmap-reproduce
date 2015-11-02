@@ -61,7 +61,10 @@ def setup_tools():
 def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
 	
-	execute_command('');
+	folder_name = 'R7';
+	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ > Ecoli_R7_CombinedFasta.fastq');
+	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq');
+	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq');
 
 	return;
 
