@@ -62,10 +62,24 @@ def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
 	
 	folder_name = 'R7';
-	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > Ecoli_R7_CombinedFasta.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> Ecoli_R7_CombinedFasta.fastq'  % (SCRIPT_PATH, folder_name, archive_basename));
+	fastq_file = 'Ecoli_R7_CombinedFasta.fastq';
+	reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
+	# archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
+	folder_name = 'R7.3';
+	fastq_file = 'ecoliR7.3.fastq';
+	reads_folder = '%s/../data/consensus-ecoliR7.3/reads/' % (SCRIPT_PATH);
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+
+	folder_name = 'ecoli-uti89';
+	fastq_file = 'reads_ecoli_uti89.fastq';
+	reads_folder = '%s/../data/consensus-uti89/reads/' % (SCRIPT_PATH);
+	archive_basename = 'reads'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/fast5/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 	return;
 
 	sys.stderr.write('\tExtracting the R7 dataset.\n');
