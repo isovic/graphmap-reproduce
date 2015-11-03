@@ -13,7 +13,7 @@ tools_path = '%s/../tools' % (SCRIPT_PATH);
 SAMSCRIPTS = '%s/../tools/samscripts/src/' % (SCRIPT_PATH);
 
 # sys.path.append('%s/../tools/samscripts/src/' % (SCRIPT_PATH));
-SAMSCRIPTS = '%s/../../samscripts/src/' % (SCRIPT_PATH);
+# SAMSCRIPTS = '%s/../../samscripts/src/' % (SCRIPT_PATH);
 sys.path.append('%s/../../samscripts/src/' % (SCRIPT_PATH));
 try:
 	import vcffilter;
