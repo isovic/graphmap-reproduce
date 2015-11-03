@@ -101,31 +101,30 @@ def setup_data():
 	# archive_basename = 'R7_3_pgx_metrichor2_23_1D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
 	# archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement';			execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
 	# archive_basename = 'R7_3_pgx_metrichor2_23_2D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
-	folder_name = 'amplicons';
-	fastq_file = 'reads_all-f1000.fastq';
-	reads_folder = '%s/../data/amplicons-f1000-1d2d/reads/' % (SCRIPT_PATH);
+	# folder_name = 'amplicons';
+	# fastq_file = 'reads_all-f1000.fastq';
+	# reads_folder = '%s/../data/amplicons-f1000-1d2d/reads/' % (SCRIPT_PATH);
 	# archive_basename = 'R7_3_pgx_metrichor2_23_1D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
 	# archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
 	# archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
 	# archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_2d.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-
-	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-
+	# execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	# execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	# execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	# execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
 
 
-	sys.stderr.write('\tFetching the Mikheyev&Tin Lambda R6 dataset.\n');	
-	execute_command('cd %s/../data/downloads/; mkdir lambdaR6; cd lambdaR6; git clone https://github.com/mikheyev/MinION-review.git' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.1.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.2.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_2d.fastq.gz' % (SCRIPT_PATH));
-	sys.stderr.write('\tExtracting the Mikheyev&Tin Lambda R6 dataset.\n');	
-	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.1.fastq > lambda_reads.fastq' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.2.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_2d.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
-	execute_command('%s/fastqfiler.py enumerate %s/../data/downloads/lambdaR6/lambda_reads.fastq %s/../data/downloads/lambdaR6/lambda_reads-enumerated.fastq' % (SAMSCRIPTS, SCRIPT_PATH, SCRIPT_PATH));
+
+	# sys.stderr.write('\tFetching the Mikheyev&Tin Lambda R6 dataset.\n');	
+	# execute_command('cd %s/../data/downloads/; mkdir lambdaR6; cd lambdaR6; git clone https://github.com/mikheyev/MinION-review.git' % (SCRIPT_PATH));
+	# execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.1.fastq.gz' % (SCRIPT_PATH));
+	# execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.2.fastq.gz' % (SCRIPT_PATH));
+	# execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_2d.fastq.gz' % (SCRIPT_PATH));
+	# sys.stderr.write('\tExtracting the Mikheyev&Tin Lambda R6 dataset.\n');	
+	# execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.1.fastq > lambda_reads.fastq' % (SCRIPT_PATH));
+	# execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.2.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
+	# execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_2d.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
+	execute_command('%s/fastqfilter.py enumerate %s/../data/downloads/lambdaR6/lambda_reads.fastq %s/../data/downloads/lambdaR6/lambda_reads-enumerated.fastq' % (SAMSCRIPTS, SCRIPT_PATH, SCRIPT_PATH));
 	sys.stderr.write('\tFinalizing the Mikheyev&Tin Lambda R6 dataset.\n');	
 	folder_name = 'lambdaR6';
 	fastq_file = 'lambda_reads-enumerated.fastq';
