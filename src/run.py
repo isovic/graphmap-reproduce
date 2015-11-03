@@ -104,15 +104,15 @@ def setup_data():
 	folder_name = 'amplicons';
 	fastq_file = 'reads_all-f1000.fastq';
 	reads_folder = '%s/../data/amplicons-f1000-1d2d/reads/' % (SCRIPT_PATH);
-	archive_basename = 'R7_3_pgx_metrichor2_23_1D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_2d.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	# archive_basename = 'R7_3_pgx_metrichor2_23_1D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	# archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	# archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
+	# archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_2d.fastq' % (SCRIPT_PATH, folder_name, archive_basename));
 
-	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %%s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %%s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %%s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %%s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
 
 
 
