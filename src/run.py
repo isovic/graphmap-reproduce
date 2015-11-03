@@ -39,7 +39,7 @@ def setup_tools():
 
 	if (not os.path.exists('%s/../tools' % (SCRIPT_PATH))):
 		execute_command('mkdir %s/../tools' % (SCRIPT_PATH));
-		
+
 	execute_command('cd %s/../tools/; wget http://netassist.dl.sourceforge.net/project/lofreq/lofreq_star-2.1.2_linux-x86-64.tgz; tar xvf lofreq_star-2.1.2_linux-x86-64.tgz' % (SCRIPT_PATH));
 
 	if (not os.path.exists('%s/../tools/samscripts' % (SCRIPT_PATH))):
@@ -91,16 +91,47 @@ def setup_data():
 	# archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
-	# folder_name = 'amplicons';
-	# fastq_file = 'reads_all-f1000.fastq';
-	# reads_folder = '%s/../data/amplicons-f1000-1d2d/reads/' % (SCRIPT_PATH);
-	# archive_basename = 'SRR1747434'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	# archive_basename = 'SRR1748410'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
-	execute_command('%s/fastqfilter.py 2d %s/../data/amplicons-f1000/reads/reads_all-f1000.fastq %s/../data/amplicons-f1000/reads/reads_2d.fastq'  % (SAMSCRIPTS, SCRIPT_PATH, SCRIPT_PATH));
-	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/amplicons-f1000/reads/reads_all-f1000.fastq %s/../data/amplicons-f1000-1d2d/reads/reads_all-f1000.fastq'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	sys.stderr.write('\tFetching the amplicon sequencing dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir amplicons' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866620/R7_3_pgx_metrichor2_23_1D_complement.fastq.bz2' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866625/R7_3_pgx_metrichor2_23_1D.fastq.bz2' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866623/R7_3_pgx_metrichor2_23_2D.fastq.bz2' % (SCRIPT_PATH));
+	sys.stderr.write('\tExtracting the amplicon sequencing dataset.\n');	
+	folder_name = 'amplicons';
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement';			execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'R7_3_pgx_metrichor2_23_2D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
+
+	folder_name = 'amplicons';
+	fastq_file = 'reads_all-f1000.fastq';
+	reads_folder = '%s/../data/amplicons-f1000-1d2d/reads/' % (SCRIPT_PATH);
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> reads_all-f1000.fastq' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	archive_basename = 'R7_3_pgx_metrichor2_23_2D'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > reads_2d.fastq' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+
+	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %%s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %%s/../data/amplicons-f1000-1d2d/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_all-f1000.fastq %%s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000/reads/; cp %s/../data/downloads/amplicons/reads_2d.fastq %%s/../data/amplicons-f1000/reads/'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
 
 
+
+	sys.stderr.write('\tFetching the Mikheyev&Tin Lambda R6 dataset.\n');	
+	execute_command('cd %s/../data/downloads/; mkdir lambdaR6; cd lambdaR6; git clone https://github.com/mikheyev/MinION-review.git' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.1.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_1d.2.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/lambdaR6/MinION-review/data/; gunzip --keep lambda_reads_2d.fastq.gz' % (SCRIPT_PATH));
+	sys.stderr.write('\tExtracting the Mikheyev&Tin Lambda R6 dataset.\n');	
+	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.1.fastq > lambda_reads.fastq' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_1d.2.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/lambdaR6/; cat MinION-review/data/lambda_reads_2d.fastq >> lambda_reads.fastq' % (SCRIPT_PATH));
+	execute_command('%s/fastqfiler.py enumerate %s/../data/downloads/lambdaR6/lambda_reads.fastq %s/../data/downloads/lambdaR6/lambda_reads-enumerated.fastq' % (SAMSCRIPTS, SCRIPT_PATH, SCRIPT_PATH));
+	sys.stderr.write('\tFinalizing the Mikheyev&Tin Lambda R6 dataset.\n');	
+	folder_name = 'lambdaR6';
+	fastq_file = 'lambda_reads-enumerated.fastq';
+	reads_folder = '%s/../data/consensus-lambdaR6/reads/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	# folder_name = 'be1';
 	# fastq_file = 'reads-BE1.fastq';
@@ -158,8 +189,9 @@ def setup_data():
 
 	sys.stderr.write('\tExtracting the amplicon sequencing dataset.\n');	
 	folder_name = 'amplicons';
-	archive_basename = 'SRR1747434';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'SRR1748410';			execute_command('cd %s/../data/downloads/; cd %s; gunzip --keep %s.fastq.gz' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'R7_3_pgx_metrichor2_23_1D_complement';			execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'R7_3_pgx_metrichor2_23_2D';						execute_command('cd %s/../data/downloads/; cd %s; bzip2 -d --keep %s.fastq.bz2' % (SCRIPT_PATH, folder_name, archive_basename));
 
 	sys.stderr.write('\tExtracting the BE1 dataset.\n');	
 	folder_name = 'be1';
@@ -222,8 +254,9 @@ def setup_data():
 
 	sys.stderr.write('\tFetching the amplicon sequencing dataset.\n');	
 	execute_command('cd %s/../data/downloads/; mkdir amplicons' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd amplicons; wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR174/004/SRR1747434/SRR1747434.fastq.gz' % (SCRIPT_PATH));
-	execute_command('cd %s/../data/downloads/; cd amplicons; wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR174/000/SRR1748410/SRR1748410.fastq.gz' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866620/R7_3_pgx_metrichor2_23_1D_complement.fastq.bz2' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866625/R7_3_pgx_metrichor2_23_1D.fastq.bz2' % (SCRIPT_PATH));
+	execute_command('cd %s/../data/downloads/; cd amplicons; wget http://files.figshare.com/1866623/R7_3_pgx_metrichor2_23_2D.fastq.bz2' % (SCRIPT_PATH));
 
 	sys.stderr.write('\tFetching the BE1 dataset.\n');	
 	execute_command('cd %s/../data/downloads/; mkdir be1' % (SCRIPT_PATH));
