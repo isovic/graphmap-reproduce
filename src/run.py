@@ -81,14 +81,14 @@ def setup_data():
 	# archive_basename = 'reads'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/fast5/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
-	folder_name = 'salmonella-typhi';
-	fastq_file = 'reads-typhi.fastq';
-	reads_folder = '%s/../data/consensus-salmonellatyphi/reads/' % (SCRIPT_PATH);
-	archive_basename = 'H566_ON_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_ON_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	# archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s/%s; find . -name "*.fast5" -exec mv {} ./ \;' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+	# folder_name = 'salmonella-typhi';
+	# fastq_file = 'reads-typhi.fastq';
+	# reads_folder = '%s/../data/consensus-salmonellatyphi/reads/' % (SCRIPT_PATH);
+	# archive_basename = 'H566_ON_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_ON_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# # archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s/%s; find . -name "*.fast5" -exec mv {} ./ \;' % (SCRIPT_PATH, folder_name, archive_basename));
+	# archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	# folder_name = 'amplicons';
 	# fastq_file = 'reads_all-f1000.fastq';
@@ -96,9 +96,9 @@ def setup_data():
 	# archive_basename = 'SRR1747434'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# archive_basename = 'SRR1748410'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+	execute_command('%s/fastqfilter.py 2d %s/../data/amplicons-f1000/reads/reads_all-f1000.fastq %s/../data/amplicons-f1000/reads/reads_2d.fastq'  % (SAMSCRIPTS, SCRIPT_PATH, SCRIPT_PATH));
+	execute_command('mkdir -p %s/../data/amplicons-f1000-1d2d/reads/; cp %s/../data/amplicons-f1000/reads/reads_all-f1000.fastq %s/../data/amplicons-f1000-1d2d/reads/reads_all-f1000.fastq'  % (SCRIPT_PATH, SCRIPT_PATH, SCRIPT_PATH));
 
-	# reads_folder = '%s/../data/amplicons-f1000/reads/' % (SCRIPT_PATH);
-	# execute_command('%s/fastqfilter.py %s/../data/downloads/%s/reads_all-f1000.fastq %s/../data/downloads/%s/reads_2d.fastq'  % (SAMSCRIPTS, SCRIPT_PATH, folder_name, SCRIPT_PATH, folder_name));
 
 
 	# folder_name = 'be1';
