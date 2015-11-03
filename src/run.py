@@ -61,9 +61,9 @@ def setup_tools():
 def setup_data():
 	sys.stderr.write('Extracting the raw nanopore data from archives.\n');
 	
-	folder_name = 'R7';
-	fastq_file = 'Ecoli_R7_CombinedFasta.fastq';
-	reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
+	# folder_name = 'R7';
+	# fastq_file = 'Ecoli_R7_CombinedFasta.fastq';
+	# reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
 	# archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
@@ -81,18 +81,12 @@ def setup_data():
 	# archive_basename = 'reads'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/fast5/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
-	sys.stderr.write('\tExtracting the Salmonella Typhi dataset.\n');	
-	folder_name = 'salmonella-typhi';
-	archive_basename = 'H566_ON_inc';			execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
-	archive_basename = 'H566_30_min_inc';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
-	archive_basename = 'raw_2_rabsch_R7';		execute_command('cd %s/../data/downloads/; cd %s; mkdir %s; tar -xzvf %s.tar.gz -C %s/' % (SCRIPT_PATH, folder_name, archive_basename, archive_basename, archive_basename));
-
 	folder_name = 'salmonella-typhi';
 	fastq_file = 'reads-typhi.fastq';
 	reads_folder = '%s/../data/consensus-salmonellatyphi/reads/' % (SCRIPT_PATH);
 	archive_basename = 'H566_ON_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_ON_inc/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s/%s; find . -name "*.fast5" -exec mv {} ./ \;' % (SCRIPT_PATH, folder_name, archive_basename));
-	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/H566_30_min_inc/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s/%s; find . -name "*.fast5" -exec mv {} ./ \;' % (SCRIPT_PATH, folder_name, archive_basename));
+	archive_basename = 'H566_30_min_inc'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	archive_basename = 'raw_2_rabsch_R7'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/raw_2_rabsch_R7/downloads/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
@@ -123,14 +117,14 @@ def setup_data():
 	# archive_basename = 'AWK_ONT_FAA17573'; execute_command('cd %s/../data/downloads/%s; cat %s.fastq >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
-	folder_name = 'ecoli-nmeth';
-	fastq_file = 'reads-nmeth-all_2d.fastq';
-	reads_folder = '%s/../data/consensus-ecolinmeth/reads/' % (SCRIPT_PATH);
-	archive_basename = 'flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_20/1.9/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_32_LomanLabz_K12_His_tag'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_32/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_33/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	archive_basename = 'flowcell_39'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_39_K12_Histag/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
-	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+	# folder_name = 'ecoli-nmeth';
+	# fastq_file = 'reads-nmeth-all_2d.fastq';
+	# reads_folder = '%s/../data/consensus-ecolinmeth/reads/' % (SCRIPT_PATH);
+	# archive_basename = 'flowcell_20_LomanLabz_PC_Ecoli_K12_R7.3'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_20/1.9/downloads/pass/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'flowcell_32_LomanLabz_K12_His_tag'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_32/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'flowcell_33_LomanLabz_PC_K12_0.4SPRI_Histag'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_33/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# archive_basename = 'flowcell_39'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/flowcell_39_K12_Histag/downloads/pass/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
+	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
 
 	# folder_name = 'ecoli-map006';
 	# fastq_file = 'reads-MAP006-1.fastq';
