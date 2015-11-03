@@ -36,16 +36,17 @@ def setup_tools():
 	execute_command('sudo pip install pyvcf');
 	execute_command('sudo apt-get install tabix');
 	execute_command('sudo apt-get installa vcftools');
-	execute_command('cd %s/../tools/; wget http://netassist.dl.sourceforge.net/project/lofreq/lofreq_star-2.1.2_linux-x86-64.tgz; tar xvf lofreq_star-2.1.2_linux-x86-64.tgz' % (SCRIPT_PATH));
 
 	if (not os.path.exists('%s/../tools' % (SCRIPT_PATH))):
 		execute_command('mkdir %s/../tools' % (SCRIPT_PATH));
+		
+	execute_command('cd %s/../tools/; wget http://netassist.dl.sourceforge.net/project/lofreq/lofreq_star-2.1.2_linux-x86-64.tgz; tar xvf lofreq_star-2.1.2_linux-x86-64.tgz' % (SCRIPT_PATH));
 
 	if (not os.path.exists('%s/../tools/samscripts' % (SCRIPT_PATH))):
 		execute_command('cd %s/../tools; git clone https://github.com/isovic/samscripts.git' % (SCRIPT_PATH));
 	
-	if (not os.path.exists('%s/../tools/aligneval' % (SCRIPT_PATH))):
-		execute_command('cd %s/../tools; git clone https://github.com/isovic/aligneval.git; cd aligneval; git checkout devel; ./setup.py aligners; ./setup.py tools' % (SCRIPT_PATH));
+	# if (not os.path.exists('%s/../tools/aligneval' % (SCRIPT_PATH))):
+	# 	execute_command('cd %s/../tools; git clone https://github.com/isovic/aligneval.git; cd aligneval; git checkout devel; ./setup.py aligners; ./setup.py tools' % (SCRIPT_PATH));
 
 	if (not os.path.exists('%s/../tools/mutatrix/' % (SCRIPT_PATH))):
 		# execute_command('cd %s/../packs; tar -xvf mutatrix.tar.gz' % (SCRIPT_PATH));
