@@ -60,6 +60,125 @@ def setup_tools():
 
 
 def setup_data():
+
+### Data that needs to be placed on the repo:
+### - indel mutated reference for SV, in data/sv/mutated_reference/escherichia_coli-indel_events.fa
+### - amplicons-f1000/truth_variants
+### - 
+
+	###
+	folder_name = 'R7';
+	reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
+	fastq_file_2d = 'Ecoli_R7_CombinedFasta-2d.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
+	###
+	folder_name = 'R7.3';
+	reads_folder = '%s/../data/consensus-ecoliR7.3-2d/reads/' % (SCRIPT_PATH);
+	fastq_file_2d = 'ecoliR7.3-2d.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
+
+	folder_name = 'all_2d_for_sv';
+	reads_folder = '%s/../data/sv/reads/' % (SCRIPT_PATH);
+	fastq_file_2d = 'all_2d_for_sv.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	execute_command('cd %s/../data/downloads/%s; cat %s/../data/consensus-ecoliR7/reads/Ecoli_R7_CombinedFasta-2d.fastq > %s'  % (SCRIPT_PATH, folder_name, SCRIPT_PATH, fastq_file_2d));
+	execute_command('cd %s/../data/downloads/%s; cat %s/../data/consensus-ecoliR7.3-2d/reads/ecoliR7.3-2d.fastq >> %s'  % (SCRIPT_PATH, folder_name, SCRIPT_PATH, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
+
+
+
+	reference_dest = "escherichia_coli.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=50083297&from=begin&to=end&extrafeat=976&fmt_mask=294912";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	###
+	reference_folder = '%s/../data/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/consensus-ecoliR7/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/consensus-ecoliR7.3/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/nmeth/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/sv/original_reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/consensus-ecoliMAP006/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/consensus-ecoliR7.3-1d/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/consensus-ecoliR7.3-2d/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+
+
+	reference_folder = '%s/../data/consensus-lambdaR6/reference/' % (SCRIPT_PATH);
+	reference_dest = "NC_001416.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=9626243&from=begin&to=end&extrafeat=976";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	reference_folder = '%s/../data/consensus-uti89/reference/' % (SCRIPT_PATH);
+	reference_dest = "NC_007946.1.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=91209055&from=begin&to=end&extrafeat=976&fmt_mask=295336";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	reference_folder = '%s/../data/consensus-salmonellatyphi/reference/' % (SCRIPT_PATH);
+	reference_dest = "salmonella_typhi_Ty2.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=29140543&from=begin&to=end&extrafeat=976&fmt_mask=294912";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	reference_dest = "ref_chr6_chr22-GRCh37.p13.fa";
+	chr6_url = "ftp://ftp.ncbi.nlm.nih.gov/genbank/genomes/Eukaryotes/vertebrates_mammals/Homo_sapiens/GRCh37.p13/Primary_Assembly/assembled_chromosomes/FASTA/chr6.fa.gz";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s; gunzip --keep chr6.fa.gz;'  % (SCRIPT_PATH, SCRIPT_PATH, chr6_url));
+	chr22_url = "ftp://ftp.ncbi.nlm.nih.gov/genbank/genomes/Eukaryotes/vertebrates_mammals/Homo_sapiens/GRCh37.p13/Primary_Assembly/assembled_chromosomes/FASTA/chr22.fa.gz";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s; gunzip --keep chr22.fa.gz;'  % (SCRIPT_PATH, SCRIPT_PATH, chr22_url));
+	execute_command('cd %s/../data/downloads/references/; cat chr6.fa > %s; cat chr22.fa >> %s'  % (SCRIPT_PATH, reference_dest, reference_dest));
+	###
+	reference_folder = '%s/../data/amplicons-f1000/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+	###
+	reference_folder = '%s/../data/amplicons-f1000-1d2d/reference/' % (SCRIPT_PATH);
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	# reference_folder = '%s/../data/' % (SCRIPT_PATH);
+	# reference_dest = "";
+	# reference_url = "";
+	# execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	# execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+
+
+
+	reference_folder = '%s/../data/consensus-ADP1/reference/' % (SCRIPT_PATH);
+	reference_dest = "acinetobacter_baylyi_ADP1_NC_005966.1.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=50083297&from=begin&to=end&extrafeat=976&fmt_mask=294912";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	reference_folder = '%s/../data/consensus-BE1/reference/' % (SCRIPT_PATH);
+	reference_dest = "bacteroides_fragilis-BFBE1.fa";
+	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=928804415&from=begin&to=end&extrafeat=976&fmt_mask=294912";
+	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
+
+	return;
+
+
+
 	sys.stderr.write('Generating simulated data.\n');
 	if (not os.path.exits('cd %s/../tools/aligneval/setup.py' % (SCRIPT_PATH))):
 		sys.stderr.write('ERROR: Could not setup simulated data - please run "%s setup-tools" first!\n' % (sys.argv[0]));
@@ -113,6 +232,15 @@ def setup_data():
 	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+	###
+	folder_name = 'R7';
+	reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
+	fastq_file_2d = 'Ecoli_R7_CombinedFasta-2d.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 
 
 
@@ -127,6 +255,27 @@ def setup_data():
 	reads_folder = '%s/../data/consensus-ecoliR7.3/reads/' % (SCRIPT_PATH);
 	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file, reads_folder));
+	###
+	reads_folder = '%s/../data/consensus-ecoliR7.3-1d/reads/' % (SCRIPT_PATH);
+	fastq_file_1d = 'ecoliR7.3-1d.fastq';
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_1d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_1d, reads_folder));
+	###
+	folder_name = 'R7.3';
+	reads_folder = '%s/../data/consensus-ecoliR7.3-2d/reads/' % (SCRIPT_PATH);
+	fastq_file_2d = 'ecoliR7.3-2d.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
+
+	### Extracting the 2d reads from the R7 and R7.3 datasets.
+	folder_name = 'all_2d_for_sv';
+	reads_folder = '%s/../data/sv/reads/' % (SCRIPT_PATH);
+	fastq_file_2d = 'all_2d_for_sv.fastq';
+	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	execute_command('cd %s/../data/downloads/%s; cat %s/../data/consensus-ecoliR7/reads/Ecoli_R7_CombinedFasta-2d.fastq > %s'  % (SCRIPT_PATH, folder_name, SCRIPT_PATH, fastq_file_2d));
+	execute_command('cd %s/../data/downloads/%s; cat %s/../data/consensus-ecoliR7.3-2d/reads/ecoliR7.3-2d.fastq >> %s'  % (SCRIPT_PATH, folder_name, SCRIPT_PATH, fastq_file_2d));
+	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 
 
 
@@ -441,6 +590,8 @@ def RUN_MUTATED_REFERENCE_ADDITIONAL_TESTS(run_test=False):
 
 	### This mutates the reference to include similar number of SNPs and indels as Loman/Simpson nanopore-only assembly pipeline (~3750 SNPs and ~42500 indels).
 	generate_mutated_reference(('%s/../data/reference/escherichia_coli.fa' % SCRIPT_PATH), 0.0006, 0.0067, 'data/mutated-refs/draftlike');
+	execute_command('cp -r data/mutated-refs/draftlike data/mutated-refs/draftlike_for_R7.3')
+	execute_command('cp -r data/mutated-refs/draftlike data/mutated-refs/draftlike_for_nmeth')
 
 	### This should run the alignment and collection of results on the entire E. Coli R7.3 dataset (1d+2d reads), on the artificially mutated reference.
 	reference_path = ('%s/../data/reference/escherichia_coli.fa' % SCRIPT_PATH);
@@ -748,7 +899,7 @@ def RUN_VENN_COMPARISON_TEST(sam_file1_path, sam_file2_path, reference_path, out
 
 ### This function takes an input SAM file, filters only unique alignment, filters only alignments withing the amplicon regions, and then runs variant calling. In case aligner was marginAlign, marginCaller is used.
 def RUN_AMPLICON_TEST():
-	reference = '%s/../data/amplicons-f1000/reference/ref_chr6_chr22-hg19_v38.fa' % (SCRIPT_PATH);
+	reference = '%s/../data/amplicons-f1000/reference/ref_chr6_chr22-GRCh37.p13.fa' % (SCRIPT_PATH);
 	reads = '%s/../data/amplicons-f1000/reads/reads_2d.fastq' % (SCRIPT_PATH);
 	dataset_name = 'amplicons-f1000-2d';
 	out_path = '%s/../data/out/%s/' % (SCRIPT_PATH, dataset_name);
@@ -836,7 +987,7 @@ def RUN_AMPLICON_TEST():
 		sys.stderr.write('Collected variant calling results in path: "%s".\n' % (fp_out_path));
 
 def RUN_AMPLICON_TEST_1d2d():
-	reference = '%s/../data/amplicons-f1000-1d2d/reference/ref_chr6_chr22-hg19_v38.fa' % (SCRIPT_PATH);
+	reference = '%s/../data/amplicons-f1000-1d2d/reference/ref_chr6_chr22-GRCh37.p13.fa' % (SCRIPT_PATH);
 	reads = '%s/../data/amplicons-f1000-1d2d/reads/reads_all-f1000.fastq' % (SCRIPT_PATH);
 	dataset_name = 'amplicons-f1000-1d2d';
 	out_path = '%s/../data/out/%s/' % (SCRIPT_PATH, dataset_name);
@@ -904,7 +1055,7 @@ def RUN_AMPLICON_TEST_1d2d():
 ### Reads that were mapped by both mappers were used in the subsampled set of GraphMap, while the rest needed to fill the coverage
 ### was randomly selected.
 def RUN_AMPLICON_TEST_GRAPHMAP_VS_BWAMEM():
-	reference = '%s/../data/amplicons-f1000/reference/ref_chr6_chr22-hg19_v38.fa' % (SCRIPT_PATH);
+	reference = '%s/../data/amplicons-f1000/reference/ref_chr6_chr22-GRCh37.p13.fa' % (SCRIPT_PATH);
 	reads = '%s/../data/amplicons-f1000/reads/reads_2d.fastq' % (SCRIPT_PATH);
         dataset_name = 'amplicons-f1000-2d';
         out_path = '%s/../data/out/%s/bwamem_graphmap_comparison' % (SCRIPT_PATH, dataset_name);
