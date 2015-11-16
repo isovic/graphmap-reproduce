@@ -58,29 +58,35 @@ def setup_tools():
 
 
 
+def setup_sim_data():
+	sys.stderr.write('Generating simulated data.\n');
+	if (not os.path.exits('cd %s/../tools/aligneval/setup.py' % (SCRIPT_PATH))):
+		sys.stderr.write('ERROR: Could not setup simulated data - please run "%s setup-tools" first!\n' % (sys.argv[0]));
+	else:
+		execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
 
-def setup_data():
+def setup_real_data():
 
 ### Data that needs to be placed on the repo:
 ### - indel mutated reference for SV, in data/sv/mutated_reference/escherichia_coli-indel_events.fa
 ### - amplicons-f1000/truth_variants
 ### - 
 
-	###
-	folder_name = 'R7';
-	reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
-	fastq_file_2d = 'Ecoli_R7_CombinedFasta-2d.fastq';
-	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
-	archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
-	archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
-	archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
-	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
+	# ###
+	# folder_name = 'R7';
+	# reads_folder = '%s/../data/consensus-ecoliR7/reads' % (SCRIPT_PATH);
+	# fastq_file_2d = 'Ecoli_R7_CombinedFasta-2d.fastq';
+	# execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
+	# archive_basename = 'Ecoli_R7_NONI'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	# archive_basename = 'Ecoli_R7_ONI_flowcell_18'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	# archive_basename = 'Ecoli_R7_ONI_flowcell_17'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/ >> %s'  % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	# execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 	###
 	folder_name = 'R7.3';
 	reads_folder = '%s/../data/consensus-ecoliR7.3-2d/reads/' % (SCRIPT_PATH);
 	fastq_file_2d = 'ecoliR7.3-2d.fastq';
 	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
-	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type fwd,rev %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 
 	folder_name = 'all_2d_for_sv';
@@ -179,12 +185,6 @@ def setup_data():
 
 
 
-	sys.stderr.write('Generating simulated data.\n');
-	if (not os.path.exits('cd %s/../tools/aligneval/setup.py' % (SCRIPT_PATH))):
-		sys.stderr.write('ERROR: Could not setup simulated data - please run "%s setup-tools" first!\n' % (sys.argv[0]));
-	else:
-		execute_command('cd %s/../tools; cd aligneval; ./setup.py simdata' % (SCRIPT_PATH));
-
 
 
 	yes_no = raw_input("Downloading and unpacking raw nanopore data will consume approximately ~800GB of disk space. Continue? [y/n] " % (MAPPER_NAME));
@@ -258,14 +258,14 @@ def setup_data():
 	###
 	reads_folder = '%s/../data/consensus-ecoliR7.3-1d/reads/' % (SCRIPT_PATH);
 	fastq_file_1d = 'ecoliR7.3-1d.fastq';
-	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_1d));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type fwd,rev %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_1d));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_1d, reads_folder));
 	###
 	folder_name = 'R7.3';
 	reads_folder = '%s/../data/consensus-ecoliR7.3-2d/reads/' % (SCRIPT_PATH);
 	fastq_file_2d = 'ecoliR7.3-2d.fastq';
 	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
-	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 1D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type fwd,rev %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 
 	### Extracting the 2d reads from the R7 and R7.3 datasets.
@@ -423,6 +423,7 @@ def setup_data():
 
 
 def run_simulated_data():
+	execute_command('cd %s/../tools; cd aligneval; ./run-alignment.py; ./run-evaluation.py' % (SCRIPT_PATH));
 	pass;
 
 def run_real_data():
@@ -2193,8 +2194,10 @@ if __name__ == "__main__":
 
 	if (sys.argv[1] == 'setup-tools'):
 		setup_tools();
-	elif (sys.argv[1] == 'setup-data'):
-		setup_data();
+	elif (sys.argv[1] == 'setup-realdata'):
+		setup_real_data();
+	elif (sys.argv[1] == 'setup-simdata'):
+		setup_sim_data();
 	elif (sys.argv[1] == 'run-simdata'):
 		if (MODULE_VCFFILTER == False or MODULE_FASTQPARSER == False or MODULE_UTILITYSAM == False):
 			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));

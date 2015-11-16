@@ -8,3 +8,4 @@ data/
 tools/
 src/*.pyc
 data/downloads
+packed-data/
