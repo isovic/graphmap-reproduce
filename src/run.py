@@ -2183,7 +2183,7 @@ def verbose_usage_and_exit():
 	sys.stderr.write('Usage:\n');
 	sys.stderr.write('\t%s mode\n' % sys.argv[0]);
 	sys.stderr.write('\n');
-	sys.stderr.write('\t- mode - either "run-simdata", "run-realdata", "setup-tools" or "setup-data"\n');
+	sys.stderr.write('\t- mode - either "run-simdata", "run-realdata", "setup-tools", "setup-simdata" or "setup-realdata".\n');
 	sys.stderr.write('\n');
 
 	exit(0);
