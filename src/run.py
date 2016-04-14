@@ -265,7 +265,7 @@ def setup_real_data():
 	reads_folder = '%s/../data/consensus-ecoliR7.3-2d/reads/' % (SCRIPT_PATH);
 	fastq_file_2d = 'ecoliR7.3-2d.fastq';
 	execute_command('mkdir -p %s/../data/downloads/%s' % (SCRIPT_PATH, folder_name));
-	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type fwd,rev %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
+	archive_basename = 'Ecoli_R73'; execute_command('cd %s/../data/downloads/%s; poretools fastq --type 2D %s/downloads/ > %s' % (SCRIPT_PATH, folder_name, archive_basename, fastq_file_2d));
 	execute_command('mkdir -p %s; cp %s/../data/downloads/%s/%s %s/'  % (reads_folder, SCRIPT_PATH, folder_name, fastq_file_2d, reads_folder));
 
 	### Extracting the 2d reads from the R7 and R7.3 datasets.
