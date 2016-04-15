@@ -327,9 +327,9 @@ def get_references(downloads_folder):
 
 
 	### Downloading the E. Coli gi|48994873|gb|U00096.2|
-	reference_dest = "escherichia_coli.fa";
-	reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=50083297&from=begin&to=end&extrafeat=976&fmt_mask=294912";
-	execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
+	# reference_dest = "escherichia_coli.fa";
+	# reference_url = "http://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi?tool=portal&sendto=on&log$=seqview&db=nuccore&dopt=fasta&sort=&val=50083297&from=begin&to=end&extrafeat=976&fmt_mask=294912";
+	# execute_command('mkdir -p %s/../data/downloads/references/; cd %s/../data/downloads/references/; wget %s -o %s'  % (SCRIPT_PATH, SCRIPT_PATH, reference_url, reference_dest));
 	# ###
 	# reference_folder = '%s/../data/reference/' % (SCRIPT_PATH);
 	# execute_command('mkdir -p %s; cp %s/../data/downloads/references/%s %s'  % (reference_folder, SCRIPT_PATH, reference_dest, reference_folder));
@@ -483,6 +483,6 @@ def measure_command_wrapper(out_filename):
 if __name__ == "__main__":
 	downloads_folder = '%s/../data/downloads' % (SCRIPT_PATH);
 
-#	get_real_data();
-#	move_data_to_proper_folders(downloads_folder);
-	get_references(downloads_folder);
+	get_real_data();
+	move_data_to_proper_folders(downloads_folder);
+	# get_references(downloads_folder);
