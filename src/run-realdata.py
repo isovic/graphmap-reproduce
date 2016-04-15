@@ -1816,7 +1816,7 @@ def verbose_usage_and_exit():
 	sys.stderr.write('Usage:\n');
 	sys.stderr.write('\t%s mode\n' % sys.argv[0]);
 	sys.stderr.write('\n');
-	sys.stderr.write('\t- mode - either, "run-realdata", "setup-tools" or "setup-realdata".\n');
+	sys.stderr.write('\t- mode - either, "run", "setup-tools".\n');
 	sys.stderr.write('\n');
 
 	exit(0);
@@ -1827,9 +1827,7 @@ if __name__ == "__main__":
 
 	if (sys.argv[1] == 'setup-tools'):
 		setup_tools();
-	elif (sys.argv[1] == 'setup-simdata'):
-		setup_sim_data();
-	elif (sys.argv[1] == 'run-realdata'):
+	elif (sys.argv[1] == 'run'):
 		if (MODULE_VCFFILTER == False or MODULE_FASTQPARSER == False or MODULE_UTILITYSAM == False):
 			sys.stderr.write('Please run "%s setup-tools" first! Exiting.\n\n' % (sys.argv[0]));
 			exit(1);

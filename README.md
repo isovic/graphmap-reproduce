@@ -8,7 +8,7 @@ Simulations are implemented in our other repository ```aligneval``` which will b
 ### Installation
 The tools that are required for testing can be set-up using the following command:  
 ```  
-run.py setup-tools  
+src/run-realdata.py setup-tools
 ```
 This will automatically download and install: ```PyVCF```, ```Tabix```, ```VCFtools```, ```LoFreq```, ```samscripts```, ```Mutatrix``` and ```Bamsurgeon```.  
 Sudo is required to install the first three on the list.  
@@ -41,7 +41,7 @@ src/setup-realdata.py
 
 To run the alignment and the evaluation of the results, run:  
 ```  
-src/run-realdata.py  
+src/run-realdata.py run    
 ```  
 Please make sure that all reads and references are downloaded and correctly placed.  
 
