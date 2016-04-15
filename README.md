@@ -1,6 +1,6 @@
 # Scripts to reproduce the results from the GraphMap paper.
 
-All tests on real data are implemented in a single script ```run.py```.  
+All tests on real data are implemented in a single script ```src/run-realdata.py```.  
 Tests are implemented as individual functions that are called sequentially one after the other.  
 Simulations are implemented in our other repository ```aligneval``` which will be downloaded and setup automatically.  
 
